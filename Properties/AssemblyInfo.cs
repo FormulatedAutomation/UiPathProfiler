@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("FormulatedAutomation.UiPathProfiler.Activities")]
-[assembly: AssemblyDescription("Generate a profile of the current system to help with debugging")]
+[assembly: AssemblyDescription("Generate a profile of the current system to help with debugging. Source code at https://github.com/FormulatedAutomation/UiPathProfiler")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("FormulatedAutomation.UiPathProfiler.Activities")]
