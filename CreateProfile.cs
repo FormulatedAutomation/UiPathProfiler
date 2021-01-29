@@ -8,11 +8,20 @@ namespace FormulatedAutomation.UiPathProfiler.Activities
         [Category("Input")]
         [RequiredArgument]
         public InArgument<string> OutputDir { get; set; }
+
+        [Category("Output")]
+        public OutArgument<string> ProcessCSVPath { get; set; }
+
+        [Category("Output")]
+        public OutArgument<string> SoftwareListCSVPath{ get; set; }
+
         protected override void Execute(CodeActivityContext context)
         {
             string csvPath = OutputDir.Get(context);
             Profiler profiler = new Profiler(csvPath);
-            profiler.WriteProfile();
+            Profiler.OutputFiles outputFiles = profiler.WriteProfile();
+            ProcessCSVPath.Set(context, outputFiles.ProcessListPath);
+            SoftwareListCSVPath.Set(context, outputFiles.SoftwareListPath);
         }
 
     }

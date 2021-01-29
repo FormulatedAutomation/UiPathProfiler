@@ -19,9 +19,14 @@ namespace FormulatedAutomation.UiPathProfiler.Activities
             this.outputDir = outputDir;
         }
 
-        public int WriteProfile()
+        public class OutputFiles
         {
-            int num = 0;
+            public string ProcessListPath { get; set; }
+            public string SoftwareListPath { get; set; }
+        }
+
+        public OutputFiles WriteProfile()
+        {
             DateTime dt = DateTime.Now;
             String dateStr = dt.ToString("s", DateTimeFormatInfo.InvariantInfo);
             dateStr = dateStr.Replace(":", ".");
@@ -29,8 +34,15 @@ namespace FormulatedAutomation.UiPathProfiler.Activities
             string installedOutputFile = Path.Combine(outputDir, String.Format("installed-{0}.csv", dateStr));
             string processesOutputFile = Path.Combine(outputDir, String.Format("processes-{0}.csv", dateStr));
 
-            num += WriteProcessProfile(processesOutputFile);
-            return num + WriteSoftwareProfile(installedOutputFile);
+            WriteProcessProfile(processesOutputFile);
+            WriteSoftwareProfile(installedOutputFile);
+
+            return new OutputFiles
+            {
+                ProcessListPath = processesOutputFile,
+                SoftwareListPath = installedOutputFile
+            };
+
         }
 
         public int WriteProcessProfile(string path)

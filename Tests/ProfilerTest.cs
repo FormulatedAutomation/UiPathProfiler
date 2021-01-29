@@ -12,8 +12,9 @@ namespace FormulatedAutomation.UiPathProfiler.Tests
         public void TestProfileCreation()
         {
             Profiler profiler = new Profiler(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
-            int numRecords = profiler.WriteProfile();
-            Assert.IsTrue(numRecords > 0);
+            Profiler.OutputFiles records = profiler.WriteProfile();
+            Assert.IsTrue(records.SoftwareListPath.Length > 0);
+            Assert.IsTrue(records.ProcessListPath.Length > 0);
         }
     }
 }
